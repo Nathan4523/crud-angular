@@ -1,0 +1,50 @@
+<div class="row">
+  <h2 class="w-100">Listagem de posts</h2>
+
+  <app-button routerLink="/posts/create" color="primary" [className]="'mt-4 mb-4'">
+    <app-glyph icon="fa-plus"></app-glyph>
+    Criar
+  </app-button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Conteúdo</th>
+        <th scope="col">Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of posts; let i = index">
+        <th scope="row">{{post.id}}</th>
+        <td>{{post.title}}</td>
+        <td>{{post.body}}</td>
+        <td>
+          <a [routerLink]="['/posts', post.id, 'edit']">
+            <app-glyph icon="fa-edit"></app-glyph>
+          </a>
+          <a href="javascript:void(0)" (click)="destroy(post.id, i)">
+            <app-glyph icon="fa-trash"></app-glyph>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Mensagem de confirmação</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Modal body text goes here.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+  </app-modal>
+</div>
